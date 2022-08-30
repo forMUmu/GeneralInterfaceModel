@@ -29,8 +29,45 @@ const allModel =new model（配置对象，二次封装的axios）
 
 <img width="425" alt="截屏2022-08-30 下午10 13 13" src="https://user-images.githubusercontent.com/53386011/187460255-ce43ea04-358a-4223-b84b-e213f1ebe53c.png">
 
-restful api接口规范
-每个接口方法接受一个data参数，这个参数是根据业务需求进行传参
+restful api接口规范 
+每个接口方法接受一个data参数，这个参数是根据业务需求进行传参 
+
+# 意见
+该项目可以根据自己业务需求进行改造，例如改写类的方法 
+ ```
+ import BaseInterface from './baseInterface';
+class Member extends BaseInterface {
+    constructor(url) {
+        super(url);
+    }
+    
+    add(data) {
+        return super.addItem(data);
+    }
+    delete(data) {
+        if (data['id']) {
+            return super.delItem(data);
+        }
+        else {
+            return super.delList(data);
+        }
+    }
+    get(data) {
+        if (data['id']) {
+            return super.getItem(data);
+        }
+        else {
+            return super.getList(data);
+        }
+    }
+    update(data) {
+        return super.updateItem(data);
+    }
+}
+export default Member;
+```
+然后在index中引入
+
 
  
  
